@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import StatsCounters from './components/stats-counters';
 
 export default class HTML extends React.Component {
   render() {
@@ -12,6 +13,8 @@ export default class HTML extends React.Component {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        {/* WEB STATS COUNTERS ATTACHED FOR PRODUCTION ONLY */}
+        {process.env.NODE_ENV === 'production' && <StatsCounters/>}
         {this.props.headComponents}
       </head>
       <body {...this.props.bodyAttributes}>
