@@ -8,7 +8,7 @@
         {
             "src": "/.*",
             "dest": "/public",
-            "headers": {"Authorisation": "Basic bWU6dGVzdF9wYXNzd29yZA=="}
+            "headers": {"Authorization": "Basic bWU6dGVzdF9wYXNzd29yZA=="}
         }
     ]
 }
