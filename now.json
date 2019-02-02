@@ -7,8 +7,7 @@
     "routes": [
         {
             "src": "/.*",
-            "dest": "/public",
-            "headers": {"Authorization": "Basic bWU6dGVzdF9wYXNzd29yZA=="}
+            "dest": "/public"
         }
     ]
 }

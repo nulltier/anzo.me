@@ -12,11 +12,14 @@ job build:
   script:
     # INSTALL DEPENDECIES
     - npm ci --production
+
     # BUILD THE ASSETS
     - npm run g:build
+
     # CHOOSE APP_DOMAIN
     - APP_NAME=$(node -p -e "require('./package.json').name")
     - APP_DOMAIN=$(if [ "$CI_COMMIT_REF_NAME" = "stage" ]; then echo $CI_COMMIT_REF_NAME.$APP_NAME; else echo $APP_NAME; fi)
+
     # DEPLOY AND READ THE DEPLOYMENT ID
     - DEPLOYMENT=$(npx now deploy -t $CI_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+).*$/\1/g')
     - npx now alias set $DEPLOYMENT $APP_DOMAIN -t $CI_TOKEN
