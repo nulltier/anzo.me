@@ -21,7 +21,11 @@ const IndexPage = () => (
         <code>
           {`
   while(vacations) {
-    working hard to start this site
+    workingHardToStartThisSite()
+  }
+
+  if (vacationsIsOver) {
+    workEvenHarder()
   }
           `}
         </code>
