@@ -1,0 +1,47 @@
+image: node:8.15.0
+
+# Cache modules in between jobs
+cache:
+  key: $(node -p -e "require('./package.json').version")
+  paths:
+    - node_modules/
+
+stages:
+  - setup
+  - build
+  - deploy
+  - clean-up
+
+job setup:
+  stage: setup
+  only:
+    refs:
+      - master
+  script:
+    - npm ci --production
+
+job build:
+  stage: build
+  only:
+    refs:
+      - master
+  script:
+    - npm run g:build
+
+job deploy:
+  stage: deploy
+  only:
+    refs:
+      - master
+  script:
+    - DEPLOYMENT=$(now deploy -t ${CI_TOKEN} | grep https | sed -r s'/^.*https:\/\/(\S+).*$/\1/g'
+    - now alias set ${DEPLOYMENT} ${APP_DOMAIN}
+
+job clean-up:
+  stage: clean-up
+  only:
+    refs:
+      - master
+  script:
+    - now rm ${APP_DOMAIN} -t ${CI_TOKEN} --safe --yes
+
