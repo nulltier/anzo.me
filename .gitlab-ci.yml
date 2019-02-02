@@ -7,13 +7,10 @@ cache:
     - node_modules/
 
 stages:
-  - setup
-  - build
-  - deploy
-  - clean-up
+  - build-and-deploy
 
 job setup:
-  stage: setup
+  stage: build-and-deploy
   only:
     refs:
       - master
@@ -21,7 +18,7 @@ job setup:
     - npm ci --production
 
 job build:
-  stage: build
+  stage: build-and-deploy
   only:
     refs:
       - master
@@ -29,19 +26,19 @@ job build:
     - npm run g:build
 
 job deploy:
-  stage: deploy
+  stage: build-and-deploy
   only:
     refs:
       - master
   script:
-    - DEPLOYMENT=$(now deploy -t ${CI_TOKEN} | grep https | sed -r s'/^.*https:\/\/(\S+).*$/\1/g')
-    - now alias set ${DEPLOYMENT} ${APP_DOMAIN}
+    - DEPLOYMENT=$(npx now deploy -t ${CI_TOKEN} | grep https | sed -r s'/^.*https:\/\/(\S+).*$/\1/g')
+    - npx now alias set ${DEPLOYMENT} ${APP_DOMAIN}
 
 job clean-up:
-  stage: clean-up
+  stage: build-and-deploy
   only:
     refs:
       - master
   script:
-    - now rm ${APP_DOMAIN} -t ${CI_TOKEN} --safe --yes
+    - npx now rm ${APP_DOMAIN} -t ${CI_TOKEN} --safe --yes
 
