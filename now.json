@@ -5,6 +5,10 @@
         { "src": "./public/**/*.*", "use": "@now/static" }
     ],
     "routes": [
-        { "src": "/.*", "dest": "/public" }
+        {
+            "src": "/.*",
+            "dest": "/public",
+            "headers": {"Authorisation": "Basic bWU6dGVzdF9wYXNzd29yZA=="}
+        }
     ]
 }
