@@ -32,9 +32,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://gitlab.com/anzome/speechki.page"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://gitlab.com/anzome/speechki.page/issues"
   }
 }
