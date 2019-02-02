@@ -20,7 +20,6 @@ const IndexPage = () => (
       <pre style={textStyles}>
         <code>
           {`
-  // STAGING ENV
   while(vacations) {
     workingHardToStartThisSite()
   }
