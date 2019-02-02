@@ -34,7 +34,7 @@ job deploy:
     refs:
       - master
   script:
-    - DEPLOYMENT=$(now deploy -t ${CI_TOKEN} | grep https | sed -r s'/^.*https:\/\/(\S+).*$/\1/g'
+    - DEPLOYMENT=$(now deploy -t ${CI_TOKEN} | grep https | sed -r s'/^.*https:\/\/(\S+).*$/\1/g')
     - now alias set ${DEPLOYMENT} ${APP_DOMAIN}
 
 job clean-up:
