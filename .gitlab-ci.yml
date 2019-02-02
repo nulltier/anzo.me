@@ -1,11 +1,5 @@
 image: node:8.15.0
 
-# Cache modules in between jobs
-cache:
-  key: ${CI_COMMIT_SHA}
-  paths:
-    - node_modules/
-
 stages:
   - build-and-deploy
 
@@ -15,9 +9,13 @@ job everything:
     refs:
       - master
   script:
+    # INSTALL DEPENDECIES
     - npm ci --production
+    # BUILD THE ASSETS
     - npm run g:build
+    # DEPLOY AND READ THE DEPLOYMENT ID
     - DEPLOYMENT=$(npx now deploy -t ${CI_TOKEN} | grep https | sed -r s'/^.*https:\/\/(\S+).*$/\1/g')
-    - npx now alias set ${DEPLOYMENT} ${APP_DOMAIN}
+    - APP_DOMAIN=$(node -p -e "require('./package.json').name")
+    - npx now alias set ${DEPLOYMENT} ${APP_DOMAIN} -t ${CI_TOKEN}
     - npx now rm ${APP_DOMAIN} -t ${CI_TOKEN} --safe --yes
 

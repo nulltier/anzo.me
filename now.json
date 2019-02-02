@@ -1,10 +1,6 @@
 {
     "version": 2,
     "name": "speechki.page",
-    "env": {
-        "DEPLOY_TOKEN": "@ci-token",
-        "APP_DOMAIN": "speechki.page"
-    },
     "builds": [
         { "src": "./public/**/*.*", "use": "@now/static" }
     ],
