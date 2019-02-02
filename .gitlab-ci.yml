@@ -1,11 +1,8 @@
 image: node:8.15.0
 
-variables:
-  CACHE_KEY: $(node -p -e "require('./package.json').version")
-
 # Cache modules in between jobs
 cache:
-  key: ${CACHE_KEY}
+  key: ${CI_COMMIT_SHA}
   paths:
     - node_modules/
 
