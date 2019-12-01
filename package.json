@@ -1,9 +1,9 @@
 {
-  "name": "speechki.page",
+  "name": "anzo.me",
   "version": "0.1.0",
   "private": true,
   "description": "My personal blog",
-  "author": "Aleksandr Zonov <blogknow@yandex.ru>",
+  "author": "Aleksandr Zonov <anzome@outlook.com>",
   "dependencies": {
     "gatsby": "^2.0.76",
     "gatsby-image": "^2.0.20",
@@ -32,9 +32,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/anzome/speechki.page"
+    "url": "https://github.com/anzome/anzo.me"
   },
   "bugs": {
-    "url": "https://gitlab.com/anzome/speechki.page/issues"
+    "url": "https://github.com/anzome/anzo.me/issues"
   }
 }

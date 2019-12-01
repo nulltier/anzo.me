@@ -18,7 +18,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `speechki.page`,
+        name: `anzo.me`,
         short_name: `blog`,
         start_url: `/`,
         background_color: `#663399`,
