@@ -14,12 +14,8 @@ const textStyles = {
   marginTop: '100px'
 }
 
-const IndexPage = () => (
-  <Layout>
-    <div style={backgroundStyles}>
-      <pre style={textStyles}>
-        <code>
-          {`
+const code = `
+  // staging version
   while(vacations) {
     workingHardToStartThisSite()
   }
@@ -27,7 +23,14 @@ const IndexPage = () => (
   if (vacationsIsOver) {
     workEvenHarder()
   }
-          `}
+`;
+
+const IndexPage = () => (
+  <Layout>
+    <div style={backgroundStyles}>
+      <pre style={textStyles}>
+        <code>
+          {}
         </code>
       </pre>
     </div>

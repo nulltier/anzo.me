@@ -40,4 +40,4 @@ jobs:
           APP_DOMAIN=$(if [ "$BRANCH" = "refs/heads/stage" ]; then echo stage.$APP_NAME; else echo $APP_NAME; fi)
           DEPLOYMENT=$(yarn now deploy -t $PUBLISHING_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+\.now\.sh).*$/\1/g')
           yarn now alias set $DEPLOYMENT $APP_DOMAIN -t $PUBLISHING_TOKEN
-          yarn now rm $APP_NAME -t $PUBLISHING_TOKEN --safe --yes
+          yarn now rm $APP_NAME -t $PUBLISHING_TOKEN --safe --yes || exit 0
