@@ -1,7 +1,7 @@
 name: publish
 
 on:
-  pull_request:
+  push:
     branches:
       - master
       - stage
@@ -12,31 +12,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        version: '12.x'
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          version: '12.x'
 
-    - name: install dependecies
-      run: yarn install --production
+      - name: Cache downloaded node dependecies
+        uses: actions/cache@v1
+        with:
+          path: ~/.yarn # this folder set for yarn cache manually
+          key: ${{ hashFiles('yarn.lock') }}
 
-    - name: build the assets
-      run: |
-        yarn g:build
+      - name: Install dependencies
+        run: yarn install --production --cache-folder ~/.yarn
 
-    - name: choose a domain for deployment
-      shell: bash
-      env:
-        BRANCH: ${github.ref}
-      run: |
-        APP_NAME=$(node -p -e "require('./package.json').name")
-        APP_DOMAIN=$(if [ "$BRANCH" = "stage" ]; then echo $BRANCH.$APP_NAME; else echo $APP_NAME; fi)
+      - name: build the assets
+        run: |
+          yarn g:build
 
-    - name: deploy and read the deployment ID
-      shell: bash
-      env:
-        CI_TOKEN: ${secrets.PUBLISHING_TOKEN}
-      run: |
-        DEPLOYMENT=$(npx now deploy -t $CI_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+).*$/\1/g')
-        yarn now alias set $DEPLOYMENT $APP_DOMAIN -t $CI_TOKEN
-        yarn now rm $APP_NAME -t $CI_TOKEN --safe --yes
+      - name: deploy
+        shell: bash
+        env:
+          PUBLISHING_TOKEN: ${{ secrets.PUBLISHING_TOKEN }}
+          BRANCH: ${{ github.ref }}
+        run: |
+          APP_NAME=$(node -p -e "require('./package.json').name")
+          APP_DOMAIN=$(if [ "$BRANCH" = "refs/heads/stage" ]; then echo stage.$APP_NAME; else echo $APP_NAME; fi)
+          DEPLOYMENT=$(yarn now deploy -t $PUBLISHING_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+\.now\.sh).*$/\1/g')
+          yarn now alias set $DEPLOYMENT $APP_DOMAIN -t $PUBLISHING_TOKEN
+          yarn now rm $APP_NAME -t $PUBLISHING_TOKEN --safe --yes
