@@ -25,8 +25,8 @@
   ],
   "license": "MIT",
   "scripts": {
-    "g:build": "gatsby build",
-    "g:develop": "gatsby develop"
+    "build": "gatsby build",
+    "develop": "gatsby develop"
   },
   "devDependencies": {
     "prettier": "1.19.1"

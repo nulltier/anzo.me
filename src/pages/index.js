@@ -15,7 +15,6 @@ const textStyles = {
 }
 
 const code = `
-  // staging version
   while(vacations) {
     workingHardToStartThisSite()
   }
@@ -30,7 +29,7 @@ const IndexPage = () => (
     <div style={backgroundStyles}>
       <pre style={textStyles}>
         <code>
-          {}
+          {code}
         </code>
       </pre>
     </div>

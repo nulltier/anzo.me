@@ -27,7 +27,7 @@ jobs:
 
       - name: build the assets
         run: |
-          yarn g:build
+          yarn build
 
       - name: deploy
         shell: bash
