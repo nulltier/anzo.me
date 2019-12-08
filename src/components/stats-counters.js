@@ -15,9 +15,14 @@ export default () => (
         webvisor:true
       });
     `}}/>
-    <noscript><div><img src="https://mc.yandex.ru/watch/56576185" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript><div>
+        <img
+          src="https://mc.yandex.ru/watch/56576185"
+          style={{position: 'absolute', left: '-9999px'}}
+          alt="" />
+    </div></noscript>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36942724-2"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36942724-2"/>
     <script dangerouslySetInnerHTML={{__html: `
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments)}
