@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `anzome is me`,
     description: `nite attempt to start publicly available web page`,
-    author: `@fort_wrong`,
+    author: `@fort_wrong`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -20,4 +20,4 @@ module.exports = {
       }
     }
   ]
-}
+};

@@ -1,10 +1,16 @@
 {
-    "version": 2,
-    "name": "anzo.me",
-    "builds": [
-        { "src": "./public/**/*.*", "use": "@now/static" }
-    ],
-    "routes": [
-        { "src": "/(?<path>.*)", "dest": "/public/$path" }
-    ]
+  "version": 2,
+  "name": "anzo.me",
+  "builds": [
+    {
+      "src": "./public/**/*.*",
+      "use": "@now/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(?<path>.*)",
+      "dest": "/public/$path"
+    }
+  ]
 }

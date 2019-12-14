@@ -1,5 +1,5 @@
-import React from 'react'
-import Layout from '../components/layout'
+import React from 'react';
+import Layout from '../components/layout';
 
 const backgroundStyles = {
   height: '100%',
@@ -12,7 +12,7 @@ const textStyles = {
   display: 'inline-block',
   background: 'none',
   marginTop: '100px'
-}
+};
 
 const code = `
   while(vacations) {
@@ -28,12 +28,10 @@ const IndexPage = () => (
   <Layout>
     <div style={backgroundStyles}>
       <pre style={textStyles}>
-        <code>
-          {code}
-        </code>
+        <code>{code}</code>
       </pre>
     </div>
   </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;
