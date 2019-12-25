@@ -1,0 +1,12 @@
+.backgroundStyles {
+  height: 100%;
+  background: url(/images/dust_scratches.png) repeat;
+  text-align: center;
+}
+
+.textStyles {
+  text-align: left;
+  display: inline-block;
+  background: none;
+  margin-top: 100px;
+}

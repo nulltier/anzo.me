@@ -7,7 +7,6 @@ on:
 
 jobs:
   build-and-deploy:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +19,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.yarn # this folder set for yarn cache manually
-          key: ${{ hashFiles('yarn.lock') }}
+          key: ${{hashFiles('yarn.lock')}}
 
       - name: Install dependencies
         run: yarn install --production --cache-folder ~/.yarn
@@ -32,10 +31,10 @@ jobs:
       - name: deploy
         shell: bash
         env:
-          PUBLISHING_TOKEN: ${{ secrets.PUBLISHING_TOKEN }}
-          BRANCH: ${{ github.ref }}
+          PUBLISHING_TOKEN: ${{secrets.PUBLISHING_TOKEN}}
+          BRANCH: ${{github.ref}}
         run: |
           APP_NAME=$(node -p -e "require('./package.json').name")
-          DEPLOYMENT=$(yarn now deploy -t $PUBLISHING_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+\.now\.sh).*$/\1/g')
+          DEPLOYMENT=$(yarn now --prod deploy -t $PUBLISHING_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+\.now\.sh).*$/\1/g')
           yarn now alias set $DEPLOYMENT $APP_NAME -t $PUBLISHING_TOKEN
           yarn now rm $APP_NAME -t $PUBLISHING_TOKEN --safe --yes || exit 0

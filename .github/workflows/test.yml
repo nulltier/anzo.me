@@ -10,8 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
-      - uses: actions/checkout@v1
+      - name: Checkout the code
+        uses: actions/checkout@v1
 
       - uses: actions/setup-node@v1
         with:
@@ -21,11 +21,10 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.yarn # this folder set for yarn cache manually
-          key: ${{ hashFiles('yarn.lock') }}
+          key: ${{hashFiles('yarn.lock')}}
 
       - name: Install dependencies
         run: yarn install --production --cache-folder ~/.yarn
 
       - name: build the assets
-        run: |
-          yarn build
+        run: yarn build

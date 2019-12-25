@@ -1,17 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import StatsCounters from './components/stats-counters';
 
-export default class HTML extends React.Component {
-  render() {
+interface Props {
+  htmlAttributes: object;
+  headComponents: [];
+  bodyAttributes: object;
+  preBodyComponents: [];
+  body: string;
+  postBodyComponents: [];
+}
+
+export default class HTML extends React.Component<Props> {
+  render(): React.ReactElement {
     return (
       <html {...this.props.htmlAttributes}>
         <head>
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-          {/* WEB STATS COUNTERS ATTACHED FOR PRODUCTION ONLY */}
-          {process.env.NODE_ENV === 'production' && <StatsCounters />}
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>
@@ -28,12 +33,3 @@ export default class HTML extends React.Component {
     );
   }
 }
-
-HTML.propTypes = {
-  htmlAttributes: PropTypes.object,
-  headComponents: PropTypes.array,
-  bodyAttributes: PropTypes.object,
-  preBodyComponents: PropTypes.array,
-  body: PropTypes.string,
-  postBodyComponents: PropTypes.array
-};

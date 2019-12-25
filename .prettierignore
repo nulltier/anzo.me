@@ -1,3 +1,11 @@
+# node files
 /node_modules/
+/.yarnrc
+/yarn.lock
+
+# gatsby files
 /.cache/
 /public/
+
+# misc
+/.prettierignore
