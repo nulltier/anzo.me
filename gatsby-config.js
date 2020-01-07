@@ -27,6 +27,13 @@ module.exports = {
         jsxPragma: `React`, // 'React' pragma required to don't get React undefined, don't set 'jsx' here
         allExtensions: true
       }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/src/content/pages`
+      }
     }
   ]
 };
