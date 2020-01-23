@@ -34,7 +34,7 @@
 }
 
 @font-face {
-  font-family: 'PT Mono';
+  font-family: 'JetBrains Mono';
   src: url('//anzo.me.s3.amazonaws.com/fonts/PTMono-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
@@ -382,6 +382,12 @@ code {
   color: #cc2a36;
 }
 
+pre,
+code {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
+    'Liberation Mono', Menlo, Courier, monospace;
+}
+
 code:before,
 code:after {
   letter-spacing: -0.2em;
@@ -393,13 +399,6 @@ pre code:after,
 pre tt:before,
 pre tt:after {
   content: '';
-}
-
-code {
-  border-radius: 3px;
-  font-family: 'PT Mono', 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
-    'Liberation Mono', Menlo, Courier, monospace;
-  padding: 0.2em 0;
 }
 
 pre code {
