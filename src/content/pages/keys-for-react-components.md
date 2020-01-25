@@ -3,15 +3,15 @@ id: 0002
 path: '/note/keys-for-react-components'
 title: 'Retrieving keys for the React components'
 tags:
-  - react
-  - jsx
+    - react
+    - jsx
 ---
 
 React has its quirks. Keys for the components rendered in an iteration of any kind are [amongst of them](https://reactjs.org/docs/lists-and-keys.html).
 
 ```javascript jsx
 {
-  users.map(user => <Card key={user.some - unique - property} user={user} />);
+    users.map(user => <Card key={user.some - unique - property} user={user} />);
 }
 ```
 
@@ -23,7 +23,7 @@ But, sometimes, you have to use the pieces of data with no IDs to map through to
 
 ```javascript jsx
 {
-  users.map(user => <Card key={calculateHashOfTheObject(user)} user={user} />);
+    users.map(user => <Card key={calculateHashOfTheObject(user)} user={user} />);
 }
 ```
 
@@ -33,14 +33,14 @@ Usually, I prefer to use indexes as the keys.
 
 ```javascript jsx
 const Cards = users => {
-  const [preparedUsers] = useState(
-    users.map((user, i) => ({
-      ...user,
-      id: i
-    }))
-  );
+    const [preparedUsers] = useState(
+        users.map((user, i) => ({
+            ...user,
+            id: i
+        }))
+    );
 
-  return preparedUsers.map(user => <Card key={user.id} user={user} />);
+    return preparedUsers.map(user => <Card key={user.id} user={user} />);
 };
 ```
 
