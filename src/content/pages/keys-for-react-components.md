@@ -1,4 +1,11 @@
-# Retrieve keys for a React components
+---
+id: 0002
+path: '/note/keys-for-react-components'
+title: 'Retrieving keys for the React components'
+tags:
+  - react
+  - jsx
+---
 
 React has its quirks. Keys for the components rendered in an iteration of any kind are [amongst of them](https://reactjs.org/docs/lists-and-keys.html).
 

@@ -34,6 +34,7 @@ module.exports = {
         name: `content`,
         path: `${__dirname}/src/content/pages`
       }
-    }
+    },
+    `gatsby-transformer-remark`
   ]
 };

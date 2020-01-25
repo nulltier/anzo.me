@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -21,5 +19,14 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     }
-  }
+  },
+  overrides: [
+    {
+      files: ['./gatsby-*.js'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-var-requires': 'off'
+      }
+    }
+  ]
 };

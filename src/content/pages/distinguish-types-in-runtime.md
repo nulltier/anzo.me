@@ -1,4 +1,11 @@
-# Handle the types distinguished in a runtime
+---
+id: 0001
+path: '/note/ts-choose-type-at-runtime'
+title: 'Distinguish types at runtime'
+tags:
+  - typescript
+  - types
+---
 
 Often, you have while using typescript you have to handle situations when you don't know the type beforehand, during the compile type, for sure. For example, you may easily get an error instead of expected data as a result of a call to a REST API.
 
@@ -16,6 +23,7 @@ There is a better way. We may use the discriminated union to describe all the po
 ```typescript
 interface TileInfo {
   price: string;
+  __;
 }
 
 interface TileError {
