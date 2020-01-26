@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { NoteFrontmatter } from '../../typings/entities';
 import NotesList from '../../components/notes-list/notes-list';
+import Navigation from '../../components/navigation/navigation';
 
 export const pageQuery = graphql`
     query($tag: String) {
@@ -45,7 +46,12 @@ const TagPage = ({ data }: TagPageProps): React.ReactElement => {
         ...frontmatter,
         url: `/note/${frontmatter.path}`
     }));
-    return <NotesList notes={notes} />;
+    return (
+        <div className="content">
+            <Navigation />
+            <NotesList notes={notes} />
+        </div>
+    );
 };
 
 export default TagPage;

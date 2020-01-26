@@ -1,6 +1,5 @@
 import React from 'react';
 import StatCounters from './components/stats-counters';
-import Navigation from './components/navigation/navigation';
 
 interface Props {
     htmlAttributes: object;
@@ -30,8 +29,7 @@ export default class HTML extends React.Component<Props> {
                 </head>
                 <body {...this.props.bodyAttributes}>
                     {this.props.preBodyComponents}
-                    <div key="body" className="content">
-                        <Navigation />
+                    <div key="body">
                         <div id="___gatsby" dangerouslySetInnerHTML={{ __html: this.props.body }} />
                     </div>
                     {this.props.postBodyComponents}

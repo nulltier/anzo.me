@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { NoteFrontmatter } from '../../typings/entities';
 import Tag from '../../components/tag/tag';
 import styles from './note.module.css';
+import Navigation from '../../components/navigation/navigation';
 
 interface NoteProps {
     data: {
@@ -31,7 +32,8 @@ export default function Note({ data }: NoteProps): React.ReactElement {
     const { frontmatter, html } = markdownRemark;
 
     return (
-        <React.Fragment>
+        <div className="content">
+            <Navigation />
             <div className={styles.page}>
                 <div className={styles.tags}>
                     {frontmatter.tags.map(name => (
@@ -41,6 +43,6 @@ export default function Note({ data }: NoteProps): React.ReactElement {
                 <h1 className={styles.title}>{frontmatter.title}</h1>
                 <div className={styles.content} dangerouslySetInnerHTML={{ __html: html }} />
             </div>
-        </React.Fragment>
+        </div>
     );
 }

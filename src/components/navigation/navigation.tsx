@@ -26,7 +26,7 @@ export default function Navigation(): React.ReactElement {
     ];
 
     return (
-        <div key="navigation" className={styles.navigation}>
+        <div className={styles.navigation}>
             {links.map(
                 ({ url, title, icon }): React.ReactNode => (
                     <a key={url} className={styles.item} href={url} title={title}>

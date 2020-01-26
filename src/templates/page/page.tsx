@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { PageFrontmatter } from '../../typings/entities';
 import styles from './page.module.css';
+import Navigation from '../../components/navigation/navigation';
 
 interface PageProps {
     data: {
@@ -29,11 +30,12 @@ export default function Page({ data }: PageProps): React.ReactElement {
     const { frontmatter, html } = markdownRemark;
 
     return (
-        <React.Fragment>
+        <div className="content">
+            <Navigation />
             <div className={styles.page}>
                 <h1 className={styles.title}>{frontmatter.title}</h1>
                 <div className={styles.content} dangerouslySetInnerHTML={{ __html: html }} />
             </div>
-        </React.Fragment>
+        </div>
     );
 }
