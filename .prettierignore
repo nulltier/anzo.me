@@ -1,4 +1,4 @@
-# node files
+# page files
 /node_modules/
 /.yarnrc
 /yarn.lock
@@ -6,6 +6,7 @@
 # gatsby files
 /.cache/
 /public/
+*.md
 
 # misc
 /.prettierignore

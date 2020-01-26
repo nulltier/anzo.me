@@ -1,15 +1,19 @@
 ---
-id: 0001
-path: '/note/ts-choose-type-at-runtime'
+
+id: '0001'
+path: 'ts-choose-type-at-runtime'
 title: 'Distinguish types at runtime'
 tags:
     - typescript
-    - types
+    - runtime
+short: |
+    Often, while using typescript, you have to handle situations when you don't know for sure the type beforehand, during the compile type.
+
 ---
 
-Often, you have while using typescript you have to handle situations when you don't know the type beforehand, during the compile type, for sure. For example, you may easily get an error instead of expected data as a result of a call to a REST API.
+Often, while using typescript, you have to handle situations when you don't know for sure the type beforehand, during the compile type. And usually there are possibility to guess a type from a known set of variations. For example, a REST endpoint may return an error instead of a data.
 
-The naive solution is to make all the properties optional. But it won't prevent you from calling expected data from the error object.
+The simplest solution is to make all the properties optional. But it won't prevent you from calling expected data from the error object.
 
 ```typescript
 interface Response {
@@ -23,7 +27,6 @@ There is a better way. We may use the discriminated union to describe all the po
 ```typescript
 interface TileInfo {
     price: string;
-    __;
 }
 
 interface TileError {

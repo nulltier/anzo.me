@@ -7,7 +7,7 @@
         "allowJs": false,
         "strict": true,
         "sourceMap": true,
-        "types": ["node", "jest", "react", "react-dom"],
+        "types": ["node", "jest", "react", "react-dom", "gatsby"],
         "lib": ["es2015", "dom"],
         "skipLibCheck": true,
         "noUnusedLocals": true

@@ -1,13 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { NoteFrontmatter } from '../typings/entities';
-import NotesList from '../components/notes-list/notes-list';
+import { NoteFrontmatter } from '../../typings/entities';
+import NotesList from '../../components/notes-list/notes-list';
 
 export const pageQuery = graphql`
-    query {
+    query($tag: String) {
         allMarkdownRemark(
-            filter: { fileAbsolutePath: { regex: "/content/notes/" } }
-            sort: { order: DESC, fields: [frontmatter___id] }
+            limit: 1000
+            sort: { fields: [frontmatter___id], order: DESC }
+            filter: {
+                frontmatter: { tags: { in: [$tag] } }
+                fileAbsolutePath: { regex: "/content/notes/" }
+            }
         ) {
             edges {
                 node {
@@ -24,7 +28,7 @@ export const pageQuery = graphql`
     }
 `;
 
-interface IndexPageProps {
+interface TagPageProps {
     data: {
         allMarkdownRemark: {
             edges: {
@@ -36,7 +40,7 @@ interface IndexPageProps {
     };
 }
 
-const IndexPage = ({ data }: IndexPageProps): React.ReactElement => {
+const TagPage = ({ data }: TagPageProps): React.ReactElement => {
     const notes = data.allMarkdownRemark.edges.map(({ node: { frontmatter } }) => ({
         ...frontmatter,
         url: `/note/${frontmatter.path}`
@@ -44,4 +48,4 @@ const IndexPage = ({ data }: IndexPageProps): React.ReactElement => {
     return <NotesList notes={notes} />;
 };
 
-export default IndexPage;
+export default TagPage;

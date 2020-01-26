@@ -1,4 +1,6 @@
 import React from 'react';
+import StatCounters from './components/stats-counters';
+import Navigation from './components/navigation/navigation';
 
 interface Props {
     htmlAttributes: object;
@@ -23,15 +25,15 @@ export default class HTML extends React.Component<Props> {
                     {this.props.headComponents}
                     <link rel="stylesheet" type="text/css" href="/styles/reset.css" />
                     <link rel="stylesheet" type="text/css" href="/styles/common.css" />
+
+                    {process.env.NODE_ENV === 'production' && <StatCounters />}
                 </head>
                 <body {...this.props.bodyAttributes}>
                     {this.props.preBodyComponents}
-                    <div
-                        key={`body`}
-                        id="___gatsby"
-                        className={`content`}
-                        dangerouslySetInnerHTML={{ __html: this.props.body }}
-                    />
+                    <div key="body" className="content">
+                        <Navigation />
+                        <div id="___gatsby" dangerouslySetInnerHTML={{ __html: this.props.body }} />
+                    </div>
                     {this.props.postBodyComponents}
                 </body>
             </html>
