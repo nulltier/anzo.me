@@ -13,7 +13,7 @@ React has its quirks. Keys for the components rendered in an iteration of any ki
 
 ```javascript
 {
-    users.map(user => <Card key={user.some - unique - property} user={user} />);
+    users.map(user => <Card key={user.someUniqueProperty} user={user} />);
 }
 ```
 
