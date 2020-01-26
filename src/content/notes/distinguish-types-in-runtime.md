@@ -38,7 +38,7 @@ type TileData = TileInfo | TileError;
 
 Such a construct later may be used together with the in operator as a type guard.
 
-```typescript jsx
+```typescript
 {
     'price' in data && data.price;
 }
@@ -46,7 +46,7 @@ Such a construct later may be used together with the in operator as a type guard
 
 This will work exactly as expected. The only flaw of the approach is a necessity to use a string literal with the name of a property. It stops working if someone will try to move string into variable or enum. Because of this, I see no reason to use this approach exclusively for everything. For some cases, the typecasting will work fine.
 
-```typescript jsx
+```typescript
 {
     (renderingData as ResponseSuccess).accessData.map(doSomething);
 }
@@ -54,7 +54,7 @@ This will work exactly as expected. The only flaw of the approach is a necessity
 
 It works because there are no further attempts to reach data which may be not available. Next example will show it better.
 
-```typescript jsx
+```typescript
 //this won't work
 {
     (TileInfo as data) && data.price;

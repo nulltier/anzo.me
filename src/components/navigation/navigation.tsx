@@ -9,11 +9,6 @@ export default function Navigation(): React.ReactElement {
             icon: 'https://anzome.s3.amazonaws.com/icons/home.svg'
         },
         {
-            url: '/credits',
-            title: 'Credits',
-            icon: 'https://anzome.s3.amazonaws.com/icons/thumbs-up.svg'
-        },
-        {
             url: 'https://github.com/anzome',
             title: 'GitHub',
             icon: 'https://anzome.s3.amazonaws.com/icons/github.svg'
@@ -22,6 +17,11 @@ export default function Navigation(): React.ReactElement {
             url: 'https://twitter.com/fort_wrong',
             title: 'Twitter',
             icon: 'https://anzome.s3.amazonaws.com/icons/twitter.svg'
+        },
+        {
+            url: '/credits',
+            title: 'Credits',
+            icon: 'https://anzome.s3.amazonaws.com/icons/thumbs-up.svg'
         }
     ];
 

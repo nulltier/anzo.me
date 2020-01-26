@@ -11,7 +11,7 @@ short: |
 
 React has its quirks. Keys for the components rendered in an iteration of any kind are [amongst of them](https://reactjs.org/docs/lists-and-keys.html).
 
-```javascript jsx
+```javascript
 {
     users.map(user => <Card key={user.some - unique - property} user={user} />);
 }
@@ -23,7 +23,7 @@ Usually, when each data piece has a unique property, this is a clear no-brainer.
 
 But, sometimes, you have to use the pieces of data with no IDs to map through to render React components. Practice shows that there are different approaches to make things done.
 
-```javascript jsx
+```javascript
 {
     users.map(user => <Card key={calculateHashOfTheObject(user)} user={user} />);
 }
@@ -33,7 +33,7 @@ This one looks like an overhead to me. The function has to keep all hashes for e
 
 Usually, I prefer to use indexes as the keys.
 
-```javascript jsx
+```javascript
 const Cards = users => {
     const [preparedUsers] = useState(
         users.map((user, i) => ({

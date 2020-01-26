@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
+
 module.exports = {
     siteMetadata: {
         title: `anzome is me`,
@@ -42,6 +43,18 @@ module.exports = {
                 path: `${__dirname}/src/content/pages`
             }
         },
-        `gatsby-transformer-remark`
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins: [
+                    {
+                        resolve: `gatsby-remark-prismjs`,
+                        options: {
+                            noInlineHighlight: true
+                        }
+                    }
+                ]
+            }
+        }
     ]
 };
