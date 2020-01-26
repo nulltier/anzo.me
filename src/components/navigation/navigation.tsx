@@ -6,22 +6,22 @@ export default function Navigation(): React.ReactElement {
         {
             url: '/',
             title: 'Home',
-            icon: 'https://anzo.me.s3.amazonaws.com/icons/home.svg'
+            icon: 'https://anzome.s3.amazonaws.com/icons/home.svg'
         },
         {
             url: '/credits',
             title: 'Credits',
-            icon: 'https://anzo.me.s3.amazonaws.com/icons/thumbs-up.svg'
+            icon: 'https://anzome.s3.amazonaws.com/icons/thumbs-up.svg'
         },
         {
             url: 'https://github.com/anzome',
             title: 'GitHub',
-            icon: 'https://anzo.me.s3.amazonaws.com/icons/github.svg'
+            icon: 'https://anzome.s3.amazonaws.com/icons/github.svg'
         },
         {
             url: 'https://twitter.com/fort_wrong',
             title: 'Twitter',
-            icon: 'https://anzo.me.s3.amazonaws.com/icons/twitter.svg'
+            icon: 'https://anzome.s3.amazonaws.com/icons/twitter.svg'
         }
     ];
 

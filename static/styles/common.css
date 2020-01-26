@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'JetBrains Mono';
-    src: url('//anzo.me.s3.amazonaws.com/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    src: url('https://anzome.s3.amazonaws.com/fonts/JetBrainsMono-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
