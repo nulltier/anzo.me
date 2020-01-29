@@ -11,23 +11,23 @@ short: |
 
 ---
 
-It is pretty usual when the collective and well-organised efforts of many peoples outperform any abilities a regular person. The typescript illustrates the idea routinely. The warnings and errors raised in places which initially I couldn't agree with after a time of frustration bestow me a refined understanding of a code I wrote.
+It is pretty usual when the collective and well-organised efforts of many peoples outperform abilities of a regular person. The typescript illustrates the idea routinely. The warnings and errors it raises in places which, initially I couldn't agree with, after a time of frustration bestow me a refined understanding of a code I wrote.
 
-A recent encounter with type checking was pretty simple to describe it here with all important details but yet in short.
+A recent encounter with the type checking was pretty simple to describe it here with all important details, but yet in short.
 
-Let's say we to show the tooltips like the one shown below in different places of a certain site.
+Let's say we want to show the tooltips like the one from the below in different places of a certain site.
 
 <figure>
     <img src="https://d1svz1b6z7p08i.cloudfront.net/images/2020/tooltip-example-cut.png" alt="Tooltip example from the wikipedia.org" style="max-height: 470px;"/>
     <figcaption>a tooltip, random example from the <a href="https://en.wikipedia.org/wiki/Browser_engine">Wikipedia.org</a></figcaption>
 </figure>
 
-And for the sake of maintainability let's add a facade for an external library used to manage tooltip positioning in different situations.
+For the sake of maintainability it is safer to have a facade for an library used to manage tooltip positioning in different situations.
 
 ```typescript
 import { TooltipLibrary } from 'tooltip-library';
 
-interface TooltipLibrary {
+interface TooltipInstance {
     new(trigger: HTMLElement, content: string, options: {event: string}): void;
     show(): void;
     hide(): void;
@@ -36,7 +36,7 @@ interface TooltipLibrary {
 }
 
 class TooltipFacade {
-    private tooltip: TooltipLibrary;
+    private tooltip: TooltipInstance;
 
     private static getHTMLElement(selector: string): HTMLElement | null {
         return document.querySelector(selector);
@@ -64,9 +64,9 @@ class TooltipFacade {
 }
 ```
 
-We get get `null` from `querySelector` and have to handle it, otherwise, we will get an exception from a library. But wait. Why do we need to throw the exception to avoid an exception? Why do we need an exception?
+We can get a `null` from `querySelector` and have to handle it, otherwise, we will get an exception from a library. But wait. Why do we need to throw the exception to avoid an exception? Why do we need an exception?
 
-The tooltips aren't a critical part of our application. We may run without them and users will even notice nothing. We can replace the error throwing with simple `console.error()` to help the users of our facade to identify a problem faster.
+The tooltips aren't a critical part of our application. We may run without them and the users, possibly, won't even notice anything strange. It means we can replace the error throwing with a logging an error to help developers to identify the problem faster.
 
 ```typescript
 // TooltipFacade.constructor
@@ -85,7 +85,7 @@ Now the users of our facade are safe if the page is changed in a way they are no
 ```typescript
 class TooltipFacade {
     // ERROR: Property 'tooltip' has no initializer and is not definitely assigned in the constructor.
-    private tooltip: TooltipLibrary;
+    private tooltip: TooltipInstance;
     // ...
 }
 ```
@@ -94,7 +94,7 @@ Why??? Why it need tooltip not null. No one needs the method because there is no
 
 ```typescript
 class TooltipFacade {
-    private tooltip: TooltipLibrary | null = null;
+    private tooltip: TooltipInstance | null = null;
 }
 ```
 
@@ -110,11 +110,11 @@ class TooltipFacade {
 }
 ```
 
-What??? How it can be. I see the `constructor` clearly. There is the `this.tooltip` set with the instance of a `TooltipLibrary`. How on Earth it could be null. Hoow?! You are kidding me, typescript, right?
+What??? How it can be. I see the `constructor` clearly. There is the `this.tooltip` set with the `TooltipInstance`. How on Earth it could be null. Hoow?! You are kidding me, typescript, right?
 
 ```typescript
 // TooltipFacade.constructor
 this.tooltip = new TooltipLibrary(trigger, content, options);
 ```
 
-It took a lot of emotions of me before typescript reached me with its warnings. We have hidden the problem from the callers of our API. And that is why they will call the methods of our facade no matter what, do we have an element or don't. And this is why typescript was trying to inform me about the problems.
+It took a lot of me on running in circles before typescript reached me with its warnings. We have hidden the runtime problem from the callers of our API. And that is why they will call the methods of our facade no matter what, do we have an element on a page or don't. And this is why typescript was trying to inform me about the problems.
