@@ -217,6 +217,7 @@ b {
 }
 
 strong {
+    color: var(--accent-color);
     font-weight: bold;
 }
 

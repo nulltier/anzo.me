@@ -90,7 +90,7 @@ class TooltipFacade {
 }
 ```
 
-Why??? Why it need tooltip not null. No one needs the method because there is no related HTML element so why the typescript is so rigid on us. It is unfair. Why smarter than a mere code compiler. We'll trick it.
+**Why???** Why it need tooltip not null. No one needs the method because there is no related HTML element so why the typescript is so rigid on us. It is unfair. Why smarter than a mere code compiler. We'll trick it.
 
 ```typescript
 class TooltipFacade {
@@ -110,7 +110,7 @@ class TooltipFacade {
 }
 ```
 
-What??? How it can be. I see the `constructor` clearly. There is the `this.tooltip` set with the `TooltipInstance`. How on Earth it could be null. Hoow?! You are kidding me, typescript, right?
+**What???** How it can be. I see the `constructor` clearly. The `this.tooltip` set with a `TooltipInstance`. How on Earth it could be null. Hoow?! You are kidding me, typescript, right?
 
 ```typescript
 // TooltipFacade.constructor
