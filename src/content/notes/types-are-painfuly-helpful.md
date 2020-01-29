@@ -17,9 +17,13 @@ A recent encounter with the type checking was pretty simple to describe it here 
 
 Let's say we want to show the tooltips like the one from the below in different places of a certain site.
 
-<figure>
-    <img src="https://d1svz1b6z7p08i.cloudfront.net/images/2020/tooltip-example-cut.png" alt="Tooltip example from the wikipedia.org" style="max-height: 470px;"/>
-    <figcaption>a tooltip, random example from the <a href="https://en.wikipedia.org/wiki/Browser_engine">Wikipedia.org</a></figcaption>
+<figure class="picture" style="max-width: 381px;">
+    <div class="picture__holder" style="padding-top: calc(466 / 381 * 100%);">
+        <img class="picture__image" src="https://d1svz1b6z7p08i.cloudfront.net/images/2020/tooltip-example-cut.png" alt="Tooltip example from the wikipedia.org"/>
+    </div>
+    <figcaption>
+        a tooltip, random example from the <a href="https://en.wikipedia.org/wiki/Browser_engine">Wikipedia.org</a>
+    </figcaption>
 </figure>
 
 For the sake of maintainability it is safer to have a facade for an library used to manage tooltip positioning in different situations.
