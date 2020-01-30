@@ -14,7 +14,10 @@ React has its quirks. The `key` property React asks to set for the components, r
 ```javascript
 {
     users.map(user => (
-        <Card key={user.someUniqueProperty} user={user} />
+        <Card
+            key={user.someUniqueProperty}
+            user={user}
+        />
     ));
 }
 ```
@@ -28,7 +31,10 @@ But, sometimes, you have to use the pieces of data with no IDs to map through to
 ```javascript
 {
     users.map(user => (
-      <Card key={calculateHashOfTheObject(user)} user={user} />
+        <Card
+            key={calculateHashOfTheObject(user)}
+            user={user}
+        />
     ));
 }
 ```
