@@ -7,22 +7,30 @@ tags:
     - typescript
     - runtime
 short: |
-    Often, while using typescript, you have to handle situations when you don't know for sure the type beforehand, during the compile type.
+    Often, using the typescript, you have to handle situations when you don't know the type beforehand, during the compile type.
 
 ---
 
-Often, while using typescript, you have to handle situations when you don't know for sure the type beforehand, during the compile type. And usually there are possibility to guess a type from a known set of variations. For example, a REST endpoint may return an error instead of a data.
+Often, using the typescript, you have to handle situations when you don't know the type beforehand, during the compile type. It hardly could be taken as a big problem and there are usually two or three types to choose from. But anyway, due the frequency of the situation, it is totally ok to looking for robust and concise solution.
 
-The simplest solution is to make all the properties optional. But it won't prevent you from calling expected data from the error object.
+Lets look on a case with an REST endpoint that may return an error instead of a data.
+
+The simplest solution is to make all the properties of the data we expect optional. But it won't prevent you from calling expected data from the error object.
 
 ```typescript
 interface Response {
-    price?: string;
+    price?: number;
     errorText?: string;
 }
+
+let empty: Response = {}; // OK?
+let allTogether: Response = {
+  price: 100,
+  errorText: 'Price is not available'
+}; // No?
 ```
 
-There is a better way. We may use the discriminated union to describe all the possible types.
+We has to do better then that. And there are the discriminated unions to describe the set of possible types.
 
 ```typescript
 interface TileInfo {
@@ -36,38 +44,35 @@ interface TileError {
 type TileData = TileInfo | TileError;
 ```
 
-Such a construct later may be used together with the in operator as a type guard.
+Such a construct later may be used together with the `in` operator as a type guard.
 
 ```typescript
-{
-    'price' in data && data.price;
+if ('price' in data) {
+    showPrice(data);
+} else {
+    showError(data);
 }
 ```
 
-This will work exactly as expected. The only flaw of the approach is a necessity to use a string literal with the name of a property. It stops working if someone will try to move string into variable or enum. Because of this, I see no reason to use this approach exclusively for everything. For some cases, the typecasting will work fine.
+This will work exactly as expected. The only "flaw" of the approach is that you have to use a string literal as name of a property. It doesn't work with the variables or enums.
+
+Because of this, a typecasting is another method to prompt a type.
 
 ```typescript
-{
-    (renderingData as ResponseSuccess).accessData.map(doSomething);
-}
+(renderingData as ResponseSuccess).accessData.forEach(doSomething);
 ```
 
-It works because there are no further attempts to reach data which may be not available. Next example will show it better.
+With no other attempts to use the value of uncertain type typecasting will do the job. Otherwise typescript will ask you to cast a type every each attempt to access a value.
 
 ```typescript
 //this won't work
-{
-    (TileInfo as data) && data.price;
+if (data as TileInfo) {
+    showPrice(data.price);
 }
 
 // you have to cast type each time to make it valid
-{
-    (TileInfo as data) && (TileInfo as data).price;
-}
-
-// type guarding looks better this time
-{
-    'price' in data && data.price;
+if (data as TileInfo) {
+    showPrice(data as TileInfo).price;
 }
 ```
 
