@@ -392,11 +392,11 @@ pre code {
 
 .picture {
     width: 100%;
-    border: solid 2px var(--code-basic-color);
 }
 
 .picture__holder {
     position: relative;
+    border: solid 2px var(--code-basic-color);
 }
 
 .picture__image {
