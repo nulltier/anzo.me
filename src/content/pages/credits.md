@@ -1,5 +1,4 @@
 ---
-path: 'credits'
 title: 'Credits'
 ---
 

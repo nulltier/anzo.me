@@ -16,9 +16,9 @@ export const pageQuery = graphql`
         ) {
             edges {
                 node {
+                    fileAbsolutePath
                     frontmatter {
                         id
-                        path
                         title
                         tags
                         short
@@ -34,6 +34,7 @@ interface TagPageProps {
         allMarkdownRemark: {
             edges: {
                 node: {
+                    fileAbsolutePath: string;
                     frontmatter: NoteFrontmatter;
                 };
             }[];
@@ -42,10 +43,17 @@ interface TagPageProps {
 }
 
 const TagPage = ({ data }: TagPageProps): React.ReactElement => {
-    const notes = data.allMarkdownRemark.edges.map(({ node: { frontmatter } }) => ({
-        ...frontmatter,
-        url: `/note/${frontmatter.path}`
-    }));
+    const notes = data.allMarkdownRemark.edges.map(
+        ({ node: { frontmatter, fileAbsolutePath } }) => {
+            const fileName = fileAbsolutePath.split(/\/|\./).slice(-2, -1);
+
+            return {
+                ...frontmatter,
+                url: `/note/${fileName}`
+            };
+        }
+    );
+
     return (
         <div className="content">
             <Navigation />

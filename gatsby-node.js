@@ -21,11 +21,24 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             ) {
                 edges {
                     node {
+                        filePath: fileAbsolutePath
                         frontmatter {
                             id
-                            path
                             title
                             tags
+                        }
+                    }
+                }
+            }
+            pages: allMarkdownRemark(
+                filter: { fileAbsolutePath: { regex: "/content/pages/" } }
+                limit: 1000
+            ) {
+                edges {
+                    node {
+                        filePath: fileAbsolutePath
+                        frontmatter {
+                            title
                         }
                     }
                 }
@@ -38,19 +51,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                     fieldValue
                 }
             }
-            pages: allMarkdownRemark(
-                filter: { fileAbsolutePath: { regex: "/content/pages/" } }
-                limit: 1000
-            ) {
-                edges {
-                    node {
-                        frontmatter {
-                            path
-                            title
-                        }
-                    }
-                }
-            }
         }
     `);
 
@@ -61,21 +61,25 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
 
     result.data.notes.edges.forEach(({ node: note }) => {
+        const pathInfo = path.parse(note.filePath);
+
         createPage({
-            path: `/note/${note.frontmatter.path}`,
+            path: `/note/${pathInfo.name}`,
             component: noteTemplate,
             context: {
-                url: note.frontmatter.path
+                filePath: note.filePath
             }
         });
     });
 
     result.data.pages.edges.forEach(({ node: page }) => {
+        const pathInfo = path.parse(page.filePath);
+
         createPage({
-            path: `/${page.frontmatter.path}`,
+            path: `/${pathInfo.name}`,
             component: pageTemplate,
             context: {
-                url: page.frontmatter.path
+                filePath: page.filePath
             }
         });
     });

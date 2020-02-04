@@ -1,13 +1,9 @@
 ---
 
 id: '0001'
-path: 'ts-choose-type-at-runtime'
 title: 'Distinguish types at runtime'
-tags:
-    - typescript
-    - runtime
-short: |
-    Often, using the typescript, you have to handle situations when you don't know the type beforehand, during the compile type.
+tags: ['typescript', 'typescript']
+short: Often, using the typescript, you have to handle situations when you don't know the type beforehand, during the compile type.
 
 ---
 

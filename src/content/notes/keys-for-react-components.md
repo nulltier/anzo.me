@@ -1,12 +1,8 @@
 ---
 id: '0002'
-path: 'keys-for-react-components'
 title: 'Retrieving keys for the React components'
-tags:
-    - react
-    - jsx
-short: |
-    React has its quirks. The 'key' property React asks to set for the components, rendered within an iteration of any kind, are amongst them.
+tags: ['react', 'jsx']
+short: React has its quirks. The 'key' property React asks to set for the components, rendered within an iteration of any kind, are amongst them.
 ---
 
 React has its quirks. The `key` property React asks to set for the components, rendered within an iteration of any kind, are [amongst them](https://reactjs.org/docs/lists-and-keys.html).

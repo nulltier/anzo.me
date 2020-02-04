@@ -1,13 +1,9 @@
 ---
 
 id: '0003'
-path: 'types-are-painfully-helpful'
 title: 'Types are painfully helpful'
-tags:
-    - typescript
-    - types
-short: |
-    The types are working even if they irritate you. And even more of that. The more typechecking is a pain the bigger the benefits.
+tags: ['typescript', 'types']
+short: The types are working even if they irritate you. And even more of that. The more typechecking is a pain the bigger the benefits.
 
 ---
 

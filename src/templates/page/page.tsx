@@ -14,11 +14,10 @@ interface PageProps {
 }
 
 export const pageQuery = graphql`
-    query($url: String) {
-        markdownRemark(frontmatter: { path: { eq: $url } }) {
+    query($filePath: String!) {
+        markdownRemark(fileAbsolutePath: { eq: $filePath }) {
             html
             frontmatter {
-                path
                 title
             }
         }
