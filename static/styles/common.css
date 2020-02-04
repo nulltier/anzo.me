@@ -1,5 +1,6 @@
 :root {
     --main-bg-color: #f3f3f3;
+    --main-text-color: hsla(0, 0%, 0%, 0.8);
     --accent-color: #cc2a36;
     --code-font: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
         'Liberation Mono', Menlo, Courier, monospace;
@@ -17,7 +18,7 @@
 }
 
 body {
-    color: hsla(0, 0%, 0%, 0.8);
+    color: var(--main-text-color);
     font-weight: normal;
     word-wrap: break-word;
     font-kerning: normal;
