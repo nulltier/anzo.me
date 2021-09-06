@@ -1,7 +1,7 @@
 import React from 'react';
 import { NoteFrontmatter } from '../../typings/entities';
 import NotePreview from '../note-preview/note-preview';
-import styles from './notes-list.module.css';
+import * as styles from './notes-list.module.css';
 
 interface Preview extends NoteFrontmatter {
     url: string;

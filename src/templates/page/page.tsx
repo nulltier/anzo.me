@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { PageFrontmatter } from '../../typings/entities';
-import styles from './page.module.css';
+import * as styles from './page.module.css';
 import Navigation from '../../components/navigation/navigation';
 
 interface PageProps {

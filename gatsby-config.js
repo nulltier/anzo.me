@@ -13,6 +13,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
+                icon: `src/images/empty-icon.png`,
                 name: `anzo.me`,
                 short_name: `playground for me`,
                 start_url: `/`,

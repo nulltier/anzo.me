@@ -1,7 +1,6 @@
 # page files
 /node_modules/
-/.yarnrc
-/yarn.lock
+/package-lock.json
 
 # gatsby files
 /.cache/

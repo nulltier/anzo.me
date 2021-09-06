@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './navigation.module.css';
+import * as styles from './navigation.module.css';
 
 export default function Navigation(): React.ReactElement {
     const links = [
