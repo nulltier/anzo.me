@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './note-preview.module.css';
+import * as styles from './note-preview.module.css';
 import Tag from '../tag/tag';
 
 interface PostPreviewProps {

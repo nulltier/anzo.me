@@ -8,7 +8,7 @@ The site is powered by static-site engine [Gatsby](https://www.gatsbyjs.org/) wi
 
 The code is written in [Webstorm](https://www.jetbrains.com/webstorm/) on [Typescript](https://www.typescriptlang.org/), checked with [ESlint](https://eslint.org/) and formatted with [Prettier](https://prettier.io/).
 
-[Github](https://github.com) holds my [Git](https://git-scm.com/) repository and runs my pipelines to build and publish the site on the most geekiest hosting I know - [Zeit](https://zeit.co/). And, of course, nowhere to go without [Amazon](https://aws.amazon.com/). Its S3 keeps and serves my files reliably.
+[Github](https://github.com) holds my [Git](https://git-scm.com/) repository and runs my pipelines to build and publish the site on the most geekiest hosting I know - [Vercel](https://vercel.com/). And, of course, nowhere to go without [Amazon](https://aws.amazon.com/). Its S3 keeps and serves my files reliably.
 
 Thanks to
 - [prismjs](https://prismjs.com/) for code highlighting

@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { NoteFrontmatter } from '../../typings/entities';
 import Tag from '../../components/tag/tag';
-import styles from './note.module.css';
+import * as styles from './note.module.css';
 import Navigation from '../../components/navigation/navigation';
 
 interface NoteProps {

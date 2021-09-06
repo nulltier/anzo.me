@@ -1,40 +1,42 @@
 name: publish
 
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
 
 jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v1
-            - uses: actions/setup-node@v1
-              with:
-                  version: '12.x'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-            - name: Cache downloaded node dependecies
-              uses: actions/cache@v1
-              with:
-                  path: ~/.yarn # this folder set for yarn cache manually
-                  key: ${{hashFiles('yarn.lock')}}
+      - name: Cache downloaded node dependecies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-            - name: Install dependencies
-              run: yarn install --production --cache-folder ~/.yarn
+      - name: Install dependencies
+        run: npm install --production --cache ~/.npm
 
-            - name: build the assets
-              run: |
-                  yarn build
+      - name: build the assets
+        run: |
+          npm run build
 
-            - name: deploy
-              shell: bash
-              env:
-                  PUBLISHING_TOKEN: ${{secrets.PUBLISHING_TOKEN}}
-                  BRANCH: ${{github.ref}}
-              run: |
-                  APP_NAME=$(node -p -e "require('./package.json').name")
-                  DEPLOYMENT=$(yarn now --prod deploy -t $PUBLISHING_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+\.now\.sh).*$/\1/g')
-                  yarn now alias set $DEPLOYMENT $APP_NAME -t $PUBLISHING_TOKEN
-                  yarn now rm $APP_NAME -t $PUBLISHING_TOKEN --safe --yes || exit 0
+      - name: deploy
+        shell: bash
+        env:
+          PUBLISHING_TOKEN: ${{secrets.PUBLISHING_TOKEN}}
+          BRANCH: ${{github.ref}}
+        run: |
+          APP_NAME=$(node -p -e "require('./package.json').name")
+          DEPLOYMENT=$(npm vercel --prod deploy -t $PUBLISHING_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+\.now\.sh).*$/\1/g')
+          npx vercel alias set $DEPLOYMENT $APP_NAME -t $PUBLISHING_TOKEN
+          npx vercel rm $APP_NAME -t $PUBLISHING_TOKEN --safe --yes || exit 0
