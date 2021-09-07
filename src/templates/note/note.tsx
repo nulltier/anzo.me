@@ -34,7 +34,7 @@ export default function Note({ data }: NoteProps): React.ReactElement {
         <div className="content">
             <Navigation />
             <div className={styles.page}>
-                <div className={styles.tags}>
+                <div className={styles.tagList}>
                     {frontmatter.tags.map(name => (
                         <Tag key={name} name={name} />
                     ))}

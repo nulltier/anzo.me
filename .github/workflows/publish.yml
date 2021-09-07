@@ -31,12 +31,14 @@ jobs:
           npm run build
 
       - name: deploy
-        shell: bash
+        shell: sh
         env:
           PUBLISHING_TOKEN: ${{secrets.PUBLISHING_TOKEN}}
+          VERCEL_ORG_ID: ${{secrets.ORG_ID}}
+          VERCEL_PROJECT_ID: ${{secrets.PROJECT_ID}}
           BRANCH: ${{github.ref}}
         run: |
           APP_NAME=$(node -p -e "require('./package.json').name")
-          DEPLOYMENT=$(npm vercel --prod deploy -t $PUBLISHING_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+\.now\.sh).*$/\1/g')
+          DEPLOYMENT=$(VERCEL_ORG_ID=$VERCEL_ORG_ID VERCEL_PROJECT_ID=$VERCEL_PROJECT_ID npx vercel --prod deploy -t $PUBLISHING_TOKEN | grep https | sed -r s'/^.*https:\/\/(\S+\.vercel\.app).*$/\1/g')
           npx vercel alias set $DEPLOYMENT $APP_NAME -t $PUBLISHING_TOKEN
-          npx vercel rm $APP_NAME -t $PUBLISHING_TOKEN --safe --yes || exit 0
+          npx vercel remove $APP_NAME -t $PUBLISHING_TOKEN --safe --yes || exit 0

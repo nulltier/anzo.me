@@ -6,7 +6,7 @@
     margin-bottom: 32px;
 }
 
-.tagsList {
+.tagList {
     color: var(--accent-color);
     font-family: var(--code-font);
 }

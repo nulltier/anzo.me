@@ -37,7 +37,7 @@ But, sometimes, you have to use the pieces of data with no IDs to map through to
 
 This one looks like an overhead to me. The function has to keep all hashes for each object to avoid recalculations of them on each render. And usually, developers add an external dependency to solve the task.
 
-I prefer to use indexes as the keys.
+If there is no id on data, you may add them still using the same indexes. 
 
 ```javascript
 const Cards = users => {

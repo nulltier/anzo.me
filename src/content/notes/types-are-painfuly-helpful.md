@@ -22,7 +22,7 @@ Let's say we want to show the tooltips like the one from the below in different 
     </figcaption>
 </figure>
 
-For the sake of maintainability it is safer to have a facade for an library used to manage tooltip positioning in different situations.
+For the sake of maintainability it is safer to have a facade for a library used to manage tooltip positioning in different situations.
 
 ```typescript
 import { TooltipLibrary } from 'tooltip-library';
@@ -90,7 +90,7 @@ class TooltipFacade {
 }
 ```
 
-**Why???** Why it need tooltip not null. No one needs the method because there is no related HTML element so why the typescript is so rigid on us. It is unfair. Why smarter than a mere code compiler. We'll trick it.
+**Why?** Why typescript need a tooltip not null. No one needs the method because there is no related HTML element so why the typescript is so rigid on us. It is unfair. Why smarter than a mere code compiler. We'll trick it.
 
 ```typescript
 class TooltipFacade {
@@ -110,11 +110,11 @@ class TooltipFacade {
 }
 ```
 
-**What???** How it can be. I see the `constructor` clearly. The `this.tooltip` set with a `TooltipInstance`. How on Earth it could be null. Hoow?! You are kidding me, typescript, right?
+**What?** How it can be. I see the `constructor` clearly. The `this.tooltip` set with a `TooltipInstance`. How on Earth it could be null. How?! You are kidding me, typescript, right?
 
 ```typescript
 // TooltipFacade.constructor
 this.tooltip = new TooltipLibrary(trigger, content, options);
 ```
 
-It took a lot of me on running in circles before typescript reached me with its warnings. We have hidden the runtime problem from the callers of our API. And that is why they will call the methods of our facade no matter what, do we have an element on a page or don't. And this is why typescript was trying to inform me about the problems.
+It took a lot of me on running in circles before typescript reached me with its warnings. We have hidden the runtime problem from the callers of our API. And that is why they will call the methods of our facade no matter what, either we have an element on a page or we don't. And this is why typescript was trying to inform me about the problems.

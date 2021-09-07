@@ -4,4 +4,4 @@ title: 'About me'
 
 ---
 
-You will find everything about me here.
+Soon, you'll find here everything about me.
