@@ -1,5 +1,6 @@
 .page {
     margin-top: 48px;
+    padding-bottom: 48px;
 }
 
 .title {
@@ -7,9 +8,13 @@
 }
 
 .tagList {
-    color: var(--accent-color);
-    font-family: var(--code-font);
 }
 
 .content {
+}
+
+@media only screen and (max-width: 480px) {
+    .page {
+        margin-top: 64px;
+    }
 }
